@@ -29,3 +29,54 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+.card {
+    width: 117px;
+    height: 146px;
+    position: relative;
+}
+
+.face {
+width: 100%;
+height: 100%;
+background-color: #A7E9AF;
+border-radius: 10px;
+box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+display: flex;
+align-items: center;
+justify-content: center;
+position: absolute;
+backface-visibility: hidden;
+transition: all .5s;
+transform-style: preserve-3d;
+}
+
+.back-face {
+transform: rotateY(180deg);
+}
+
+.card:hover .back-face {
+transform: rotateY(0deg);
+}
+
+.card:hover .front-face {
+transform: rotateY(-180deg);
+}
+
+img {
+    width: 100px;
+    height: 100px;
+}
+
+@media(max-width: 630px) {
+    .title {
+        font-size: 36px;
+        line-height: 42.19px;
+        text-align: center;
+    }
+    .container {
+        width: 80%;
+        flex-direction: column;
+        align-items: center;
+    }
+}
