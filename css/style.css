@@ -1,0 +1,31 @@
+body {
+    background-color: #EEF9BF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .title {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 65.63px;
+    color: #75B79E;
+    padding-top: 40px;
+    padding-bottom: 47px;
+}
+
+.container {
+    width: 100vw;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-between;
+    gap: 34px;
+}
+
+.centralized {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
