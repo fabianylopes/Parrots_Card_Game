@@ -56,11 +56,11 @@ body {
     transform: rotateY(180deg);
 }
 
-.card .back-face {
+.turned .back-face {
     transform: rotateY(0deg);
 }
 
-.card .front-face {
+.turned .front-face {
     transform: rotateY(-180deg);
 }
 
