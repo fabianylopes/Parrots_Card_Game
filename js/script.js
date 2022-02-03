@@ -11,6 +11,7 @@ let numberOfPairs;
 const parrots = ['bobross','explody','fiesta','metal','revertit','triplets','unicorn'];
 
 function startGame(){
+    
     do{
         numberOfCards = parseInt(prompt('Com quantas cartas deseja jogar? (números pares entre 4 e 14)'));
     }while(numberOfCards % 2 !== 0 || numberOfCards < 4 || numberOfCards > 14);
@@ -27,15 +28,17 @@ function startGame(){
     chosenCards.sort(compare);
     
     const cards = document.querySelector('.container');
-    
+
+    cards.innerHTML = '';
+
     for (let i = 0; i < numberOfCards; i++) {
         cards.innerHTML += `
-            <div class="card" onclick="flip(this)">
-                <div class="front-face face">
-                    <img src="/assets/front.png">
+            <div class="card" data-identifier="card" onclick="flip(this)">
+                <div class="front-face face" data-identifier="back-face">
+                    <img src="./assets/front.png">
                 </div>
-                <div class="back-face face">
-                    <img src="/assets/${chosenCards[i]}parrot.gif">
+                <div class="back-face face" data-identifier="front-face">
+                    <img src="./assets/${chosenCards[i]}parrot.gif">
                 </div>
             </div>
         `
@@ -77,8 +80,22 @@ function checkEndGame(){
 
     if(hits === numberOfPairs){
         alert(`Você ganhou em ${plays} jogadas!`);
+        endgame();
     }
 
+}
+
+function endgame(){
+    let playAgain = '';
+
+    playAgain = prompt(`Deseja jogar novamente? (digite s ou n)`);
+        
+    plays = 0;
+    hits = 0;
+    
+    if(playAgain === 's'){
+        startGame();
+    }
 }
 
 function compare() { 
