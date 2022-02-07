@@ -7,7 +7,6 @@ let plays = 0;
 let hits = 0;
 
 let numberOfPairs;
-let flippedCards = 0;
 
 let interval = undefined;
 let seconds = 0;
@@ -22,12 +21,10 @@ function counter(){
 const parrots = ['bobross','explody','fiesta','metal','revertit','triplets','unicorn'];
 
 function startGame(){
-    interval = setInterval(counter, 1000);
-    
     do{
         numberOfCards = parseInt(prompt('Com quantas cartas deseja jogar? (números pares entre 4 e 14)'));
     }while(numberOfCards % 2 !== 0 || numberOfCards < 4 || numberOfCards > 14);
-
+    
     parrots.sort(compare);
     
     let chosenCards = [];
@@ -56,6 +53,7 @@ function startGame(){
             </div>
         `
     }
+
 }
 
 function flip(chosenCard){
@@ -63,11 +61,13 @@ function flip(chosenCard){
     
     if(firstFlip === undefined){
         firstFlip = chosenCard;
-        flippedCards++;
+
+        if(interval === undefined){
+            interval = setInterval(counter, 1000);
+        }
+    
         return;
     }
-    
-    flippedCards++;
     
     secondFlip = chosenCard;
     
@@ -82,8 +82,6 @@ function flip(chosenCard){
     plays += 2;
     
     setTimeout(checkEndGame, 500);
-
-    console.log(flippedCards);
 }
 
 function desflip(){
@@ -111,15 +109,15 @@ function endgame(){
     plays = 0;
     hits = 0;
     seconds = 0;
-    
+        
     if(playAgain === 's'){
         clearInterval(interval);
+        interval = undefined;
         startGame();
     }else {
         clearInterval(interval);
     }
 }
-
 
 function compare() { 
 	return Math.random() - 0.5; 
