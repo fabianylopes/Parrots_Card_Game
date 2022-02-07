@@ -6,6 +6,11 @@ body {
     align-items: center;
   }
 
+  header {
+    width: 100vw;
+    position: relative;
+  }
+
   .title {
     font-family: "Roboto", sans-serif;
     font-weight: 700;
@@ -14,6 +19,16 @@ body {
     color: #75B79E;
     padding-top: 40px;
     padding-bottom: 47px;
+}
+
+.timer {
+    font-family: "Roboto", sans-serif;
+    color: red;
+    font-size: 30px;
+    font-weight: bold;
+    position: absolute;
+    top: 14px;
+    right: 20px;
 }
 
 .container {

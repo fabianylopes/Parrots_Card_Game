@@ -7,10 +7,22 @@ let plays = 0;
 let hits = 0;
 
 let numberOfPairs;
+let flippedCards = 0;
+
+let interval = undefined;
+let seconds = 0;
+
+const timer = document.querySelector('.timer');
+
+function counter(){
+    timer.innerHTML = parseInt(timer.innerHTML) + 1;
+    seconds++;
+}
 
 const parrots = ['bobross','explody','fiesta','metal','revertit','triplets','unicorn'];
 
 function startGame(){
+    interval = setInterval(counter, 1000);
     
     do{
         numberOfCards = parseInt(prompt('Com quantas cartas deseja jogar? (números pares entre 4 e 14)'));
@@ -30,6 +42,7 @@ function startGame(){
     const cards = document.querySelector('.container');
 
     cards.innerHTML = '';
+    timer.innerHTML = 0;    
 
     for (let i = 0; i < numberOfCards; i++) {
         cards.innerHTML += `
@@ -50,8 +63,11 @@ function flip(chosenCard){
     
     if(firstFlip === undefined){
         firstFlip = chosenCard;
+        flippedCards++;
         return;
     }
+    
+    flippedCards++;
     
     secondFlip = chosenCard;
     
@@ -66,6 +82,8 @@ function flip(chosenCard){
     plays += 2;
     
     setTimeout(checkEndGame, 500);
+
+    console.log(flippedCards);
 }
 
 function desflip(){
@@ -79,7 +97,7 @@ function checkEndGame(){
     numberOfPairs = numberOfCards / 2;
 
     if(hits === numberOfPairs){
-        alert(`Você ganhou em ${plays} jogadas!`);
+        alert(`Você ganhou em ${plays} jogadas e em ${seconds} segundos!`);
         endgame();
     }
 
@@ -92,11 +110,16 @@ function endgame(){
         
     plays = 0;
     hits = 0;
+    seconds = 0;
     
     if(playAgain === 's'){
+        clearInterval(interval);
         startGame();
+    }else {
+        clearInterval(interval);
     }
 }
+
 
 function compare() { 
 	return Math.random() - 0.5; 
